@@ -36,6 +36,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <nav className="flex items-center gap-6">
               <NavLink href="/work-orders">Work Orders</NavLink>
               <NavLink href="/technicians">Technicians</NavLink>
+              <Link
+                href="/dispatch"
+                className="rounded-md bg-orange-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-700 transition-colors"
+              >
+                Dispatch
+              </Link>
             </nav>
           </div>
         </header>

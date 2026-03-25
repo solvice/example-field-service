@@ -11,82 +11,170 @@
 
 ---
 
-This is **FieldFlow**, a simple HVAC service management app. It demonstrates how the [Solvice scheduler plugin](https://github.com/solvice/scheduler-plugin) transforms a basic system of records into a full dispatch planning dashboard.
+This is **FieldFlow**, a simple HVAC service management app that demonstrates how the [Solvice scheduler plugin](https://github.com/solvice/scheduler-plugin) transforms a basic system of records into a full dispatch planning dashboard.
 
-## 📸 Before — System of Records
+**Two git tags tell the story:**
 
-A Next.js app with two pages: **Work Orders** and **Technicians**. No scheduling, no maps, no optimization.
-
-### Work Orders
-
-15 service requests across Belgium — AC repairs, furnace installs, maintenance checks, electrical inspections, plumbing jobs. Each has a customer, address, appointment window, and estimated duration.
-
-![Work Orders](screenshots/work-orders.png)
-
-### Technicians
-
-5 field technicians with different skills (HVAC, Electrical, Plumbing, Maintenance), home bases, and shift hours. One technician has a shorter shift to create capacity pressure.
-
-![Technicians](screenshots/technicians.png)
+| Tag | What it is |
+|:----|:-----------|
+| [`v0-before`](https://github.com/solvice/example-field-service/tree/v0-before) | A simple CRUD app — work orders table + technicians table |
+| [`v1-after`](https://github.com/solvice/example-field-service/tree/v1-after) | The same app with a full dispatch dashboard — map, timeline, drag-and-drop, real-time optimization |
 
 ---
 
-## 🚀 After — Dispatch Dashboard
+## 📖 The Full Story
 
-> **Coming soon.** Run `/scheduler` against this repo to generate the dispatch view, then tag as `v1-after`.
+### Step 1 — Start with a system of records
+
+FieldFlow is a basic Next.js app with two pages: **Work Orders** (15 HVAC service requests across Belgium) and **Technicians** (5 field workers with different skills and shift hours).
+
+No scheduling. No maps. No optimization. Just tables.
+
+![Work Orders table — 15 service requests with appointment windows, service types, and durations](screenshots/02-work-orders.png)
+
+![Technicians table — 5 techs with skills (HVAC, Electrical, Plumbing, Maintenance), home bases, and shifts](screenshots/03-technicians.png)
+
+### Step 2 — Install the Solvice scheduler plugin
+
+```bash
+claude plugin add github:solvice/scheduler-plugin
+```
+
+### Step 3 — Run `/scheduler`
+
+The plugin starts an interactive conversation. It asks 6 questions:
+
+> **1. What are you dispatching?**
+> → Field service technicians (HVAC)
+>
+> **2. What framework are you using?**
+> → React / Next.js (already set up)
+>
+> **3. Do you have a Solvice API key?**
+> → Yes, added to `.env`
+>
+> **4. What do you call your "jobs" and "resources"?**
+> → "Work Orders" and "Technicians" — with service types, appointment windows, customer names
+>
+> **5. Which views do you need?**
+> → Map + Timeline + Unplanned queue + KPI dashboard
+>
+> **6. Map library preference?**
+> → MapLibre GL JS
+
+### Step 4 — The plugin proposes an architecture
+
+Before writing any code, the plugin presents a design:
+
+```
+Domain Mapping:
+  Work Order  → Solvice Job
+  Technician  → Solvice Resource
+  Service Type → Solvice Tag
+  Appointment Window → Solvice TimeWindow
+
+Components to generate:
+  1. Types — WorkOrderAssignment, DispatchMetrics, DistanceMatrix
+  2. API client — solvice-client.ts (maps your terms ↔ Solvice types)
+  3. State — DispatchProvider (React context + reducer)
+  4. Logic — distance-matrix.ts, sequencing.ts, format.ts
+  5. UI — DispatchMap, DispatchTimeline, UnplannedQueue, DispatchKpiBar
+  6. Page — /dispatch route composing everything
+```
+
+You confirm, and it generates.
+
+### Step 5 — The dispatch dashboard appears
+
+The plugin generates all the code and a new **Dispatch** button appears in the nav:
+
+![Home page with the new Dispatch button in the navigation](screenshots/01-home.png)
+
+Click it, and you get a full dispatch planning dashboard:
+
+![Dispatch dashboard — KPI bar, timeline with 5 technicians, unplanned queue with 15 work orders, map panel](screenshots/04-dispatch-full.png)
+
+**What the plugin generated:**
+
+| Layer | Files | What it does |
+|:------|:------|:-------------|
+| **Types** | `lib/dispatch/types.ts` | WorkOrderAssignment, ScheduleViolation, DispatchMetrics, DistanceMatrix |
+| **API client** | `lib/dispatch/solvice-client.ts` | Maps Work Order ↔ Job, Technician ↔ Resource. Only layer that knows Solvice API types. |
+| **API routes** | `app/api/dispatch/solve/`, `evaluate/`, `matrix/` | Server-side proxies to Solvice VRP API |
+| **Pure logic** | `lib/dispatch/distance-matrix.ts`, `sequencing.ts`, `format.ts` | O(1) travel lookups, cascaded arrival computation, display formatting |
+| **State** | `components/dispatch/DispatchProvider.tsx` | React context + reducer with undo support |
+| **Hooks** | `hooks/useDistanceMatrix.ts`, `useSchedulerEvaluate.ts`, `useDragAndDrop.ts` | Matrix caching, two-tier evaluation, drag-and-drop orchestration |
+| **UI** | `DispatchMap.tsx`, `DispatchTimeline.tsx`, `UnplannedQueue.tsx`, `DispatchKpiBar.tsx` | Map markers + polylines, Gantt timeline, draggable queue, live metrics |
+| **Page** | `app/dispatch/page.tsx` | Composes everything into a full-screen dispatch view |
+
+**Everything uses your domain language.** The code says `WorkOrder`, `Technician`, `technicianId`, `serviceType` — never `Job`, `Resource`, or `tag`. The Solvice API mapping is isolated in `solvice-client.ts`.
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
 ```bash
 git clone https://github.com/solvice/example-field-service.git
 cd example-field-service
 pnpm install
+```
+
+Add your Solvice API key:
+
+```bash
+cp .env.example .env
+# Edit .env and add your SOLVICE_API_KEY
+```
+
+Run:
+
+```bash
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) → click **Dispatch**.
 
-### Add scheduling with the Solvice plugin
+### Compare before and after
+
+```bash
+# See the "before" — just tables
+git checkout v0-before
+pnpm dev
+
+# See the "after" — full dispatch dashboard
+git checkout v1-after
+pnpm dev
+```
+
+---
+
+## 🏗️ Build your own
+
+Don't want field service? Build a scheduler for **your** domain:
 
 ```bash
 # Install the plugin
 claude plugin add github:solvice/scheduler-plugin
 
-# Run the scheduler wizard
+# Run the wizard in your project
 /scheduler
 ```
 
-The plugin asks about your use case, tech stack, and domain language, then generates a complete dispatch dashboard with map, timeline, drag-and-drop, and real-time optimization.
+The plugin asks about your use case, adapts to your terminology, and generates a complete dispatch dashboard for your framework.
 
 ---
 
-## Git Tags
+## 🛠️ Tech Stack
 
-| Tag | Description |
-|:----|:------------|
-| `v0-before` | System of records — work orders + technicians tables |
-| `v1-after` | *(coming)* Full dispatch dashboard generated by the plugin |
+| Before (`v0`) | After (`v1`) |
+|:--------------|:-------------|
+| Next.js 15 | + MapLibre GL JS |
+| TypeScript | + @dnd-kit (drag-and-drop) |
+| Tailwind CSS v4 | + Solvice VRP API |
+| Lucide icons | + Distance matrix caching |
+| | + Two-tier evaluation |
+| | + Cascaded arrival sequencing |
 
-```bash
-# See the before state
-git checkout v0-before
-
-# See the after state (once available)
-git checkout v1-after
-```
-
----
-
-## Tech Stack
-
-- [Next.js](https://nextjs.org) 15 (App Router)
-- [TypeScript](https://typescriptlang.org)
-- [Tailwind CSS](https://tailwindcss.com) v4
-- [Lucide](https://lucide.dev) icons
-- [Solvice VRP API](https://solvice.io) (after plugin)
-
-## License
+## 📄 License
 
 MIT

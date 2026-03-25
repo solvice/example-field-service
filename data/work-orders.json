@@ -1,0 +1,171 @@
+[
+  {
+    "id": "WO-001",
+    "customerName": "Marie Dupont",
+    "address": "Rue de la Loi 42, 1000 Brussels",
+    "latitude": 50.8466,
+    "longitude": 4.3528,
+    "appointmentWindow": { "from": "2026-03-25T09:00:00+01:00", "to": "2026-03-25T12:00:00+01:00" },
+    "serviceType": "AC Repair",
+    "estimatedDuration": 60,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-002",
+    "customerName": "Jan Peeters",
+    "address": "Meir 78, 2000 Antwerp",
+    "latitude": 51.2194,
+    "longitude": 4.4025,
+    "appointmentWindow": { "from": "2026-03-25T08:00:00+01:00", "to": "2026-03-25T11:00:00+01:00" },
+    "serviceType": "Furnace Install",
+    "estimatedDuration": 180,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-003",
+    "customerName": "Sophie Maes",
+    "address": "Veldstraat 55, 9000 Ghent",
+    "latitude": 51.0543,
+    "longitude": 3.7174,
+    "appointmentWindow": { "from": "2026-03-25T10:00:00+01:00", "to": "2026-03-25T14:00:00+01:00" },
+    "serviceType": "Maintenance Check",
+    "estimatedDuration": 30,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-004",
+    "customerName": "Thomas Willems",
+    "address": "Boulevard d'Avroy 30, 4000 Liège",
+    "latitude": 50.6365,
+    "longitude": 5.5734,
+    "appointmentWindow": { "from": "2026-03-25T09:00:00+01:00", "to": "2026-03-25T11:00:00+01:00" },
+    "serviceType": "Electrical Inspection",
+    "estimatedDuration": 45,
+    "status": "Pending",
+    "notes": "Requires electrical certification"
+  },
+  {
+    "id": "WO-005",
+    "customerName": "Emma Claes",
+    "address": "Bondgenotenlaan 12, 3000 Leuven",
+    "latitude": 50.8798,
+    "longitude": 4.7005,
+    "appointmentWindow": { "from": "2026-03-25T13:00:00+01:00", "to": "2026-03-25T16:00:00+01:00" },
+    "serviceType": "AC Repair",
+    "estimatedDuration": 90,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-006",
+    "customerName": "Lucas Martens",
+    "address": "Grote Markt 15, 3500 Hasselt",
+    "latitude": 50.9307,
+    "longitude": 5.3378,
+    "appointmentWindow": { "from": "2026-03-25T08:00:00+01:00", "to": "2026-03-25T10:00:00+01:00" },
+    "serviceType": "Plumbing Repair",
+    "estimatedDuration": 60,
+    "status": "Pending",
+    "notes": "Urgent — water leak"
+  },
+  {
+    "id": "WO-007",
+    "customerName": "Charlotte Jacobs",
+    "address": "Leopoldstraat 8, 2800 Mechelen",
+    "latitude": 51.0259,
+    "longitude": 4.4776,
+    "appointmentWindow": { "from": "2026-03-25T11:00:00+01:00", "to": "2026-03-25T15:00:00+01:00" },
+    "serviceType": "Maintenance Check",
+    "estimatedDuration": 30,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-008",
+    "customerName": "Noah Hermans",
+    "address": "Kerkstraat 22, 1800 Vilvoorde",
+    "latitude": 50.9275,
+    "longitude": 4.4280,
+    "appointmentWindow": { "from": "2026-03-25T09:00:00+01:00", "to": "2026-03-25T12:00:00+01:00" },
+    "serviceType": "Furnace Install",
+    "estimatedDuration": 150,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-009",
+    "customerName": "Lotte De Smedt",
+    "address": "Steenweg 99, 1930 Zaventem",
+    "latitude": 50.8847,
+    "longitude": 4.4684,
+    "appointmentWindow": { "from": "2026-03-25T14:00:00+01:00", "to": "2026-03-25T17:00:00+01:00" },
+    "serviceType": "AC Repair",
+    "estimatedDuration": 60,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-010",
+    "customerName": "Victor Janssens",
+    "address": "Place Saint-Lambert 1, 4000 Liège",
+    "latitude": 50.6451,
+    "longitude": 5.5697,
+    "appointmentWindow": { "from": "2026-03-25T13:00:00+01:00", "to": "2026-03-25T16:00:00+01:00" },
+    "serviceType": "Electrical Inspection",
+    "estimatedDuration": 45,
+    "status": "Pending",
+    "notes": "Requires electrical certification"
+  },
+  {
+    "id": "WO-011",
+    "customerName": "Olivia Wouters",
+    "address": "Anspachlaan 65, 1000 Brussels",
+    "latitude": 50.8503,
+    "longitude": 4.3517,
+    "appointmentWindow": { "from": "2026-03-25T08:00:00+01:00", "to": "2026-03-25T10:00:00+01:00" },
+    "serviceType": "Plumbing Repair",
+    "estimatedDuration": 75,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-012",
+    "customerName": "Arthur Mertens",
+    "address": "Nationalestraat 28, 2000 Antwerp",
+    "latitude": 51.2140,
+    "longitude": 4.3997,
+    "appointmentWindow": { "from": "2026-03-25T10:00:00+01:00", "to": "2026-03-25T13:00:00+01:00" },
+    "serviceType": "Maintenance Check",
+    "estimatedDuration": 30,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-013",
+    "customerName": "Elena Van den Berg",
+    "address": "Korenmarkt 3, 9000 Ghent",
+    "latitude": 51.0544,
+    "longitude": 3.7210,
+    "appointmentWindow": { "from": "2026-03-25T14:00:00+01:00", "to": "2026-03-25T17:00:00+01:00" },
+    "serviceType": "AC Repair",
+    "estimatedDuration": 60,
+    "status": "Pending"
+  },
+  {
+    "id": "WO-014",
+    "customerName": "Maxime Lambert",
+    "address": "Rue Haute 120, 1000 Brussels",
+    "latitude": 50.8389,
+    "longitude": 4.3476,
+    "appointmentWindow": { "from": "2026-03-25T11:00:00+01:00", "to": "2026-03-25T14:00:00+01:00" },
+    "serviceType": "Furnace Install",
+    "estimatedDuration": 120,
+    "status": "Pending",
+    "notes": "New construction — access via back entrance"
+  },
+  {
+    "id": "WO-015",
+    "customerName": "Anna Vermeersch",
+    "address": "Diestsestraat 40, 3000 Leuven",
+    "latitude": 50.8782,
+    "longitude": 4.7012,
+    "appointmentWindow": { "from": "2026-03-25T09:00:00+01:00", "to": "2026-03-25T11:00:00+01:00" },
+    "serviceType": "Maintenance Check",
+    "estimatedDuration": 30,
+    "status": "Pending"
+  }
+]

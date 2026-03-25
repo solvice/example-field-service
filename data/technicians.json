@@ -1,0 +1,67 @@
+[
+  {
+    "id": "TECH-001",
+    "name": "Pieter De Vos",
+    "skills": ["HVAC", "Plumbing"],
+    "homeBase": {
+      "address": "Schaarbeek, 1030 Brussels",
+      "latitude": 50.8676,
+      "longitude": 4.3792
+    },
+    "shiftStart": "2026-03-25T08:00:00+01:00",
+    "shiftEnd": "2026-03-25T17:00:00+01:00",
+    "phone": "+32 475 12 34 56"
+  },
+  {
+    "id": "TECH-002",
+    "name": "Katrien Aerts",
+    "skills": ["HVAC", "Electrical"],
+    "homeBase": {
+      "address": "Berchem, 2600 Antwerp",
+      "latitude": 51.1989,
+      "longitude": 4.4292
+    },
+    "shiftStart": "2026-03-25T08:00:00+01:00",
+    "shiftEnd": "2026-03-25T17:00:00+01:00",
+    "phone": "+32 486 23 45 67"
+  },
+  {
+    "id": "TECH-003",
+    "name": "Bram Vanderstraeten",
+    "skills": ["Plumbing", "Maintenance"],
+    "homeBase": {
+      "address": "Sint-Pieters, 9000 Ghent",
+      "latitude": 51.0377,
+      "longitude": 3.7107
+    },
+    "shiftStart": "2026-03-25T09:00:00+01:00",
+    "shiftEnd": "2026-03-25T15:00:00+01:00",
+    "phone": "+32 498 34 56 78"
+  },
+  {
+    "id": "TECH-004",
+    "name": "Lies Coppens",
+    "skills": ["HVAC", "Maintenance"],
+    "homeBase": {
+      "address": "Heverlee, 3001 Leuven",
+      "latitude": 50.8625,
+      "longitude": 4.6850
+    },
+    "shiftStart": "2026-03-25T08:00:00+01:00",
+    "shiftEnd": "2026-03-25T17:00:00+01:00",
+    "phone": "+32 479 45 67 89"
+  },
+  {
+    "id": "TECH-005",
+    "name": "Wout Hendrickx",
+    "skills": ["Electrical", "HVAC", "Plumbing"],
+    "homeBase": {
+      "address": "Angleur, 4031 Liège",
+      "latitude": 50.6145,
+      "longitude": 5.5890
+    },
+    "shiftStart": "2026-03-25T08:00:00+01:00",
+    "shiftEnd": "2026-03-25T17:00:00+01:00",
+    "phone": "+32 470 56 78 90"
+  }
+]

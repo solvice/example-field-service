@@ -200,6 +200,15 @@ The plugin asks about your use case, adapts to your terminology, and generates a
 
 ---
 
+## 🔗 Related
+
+| Repo | Purpose |
+|:-----|:--------|
+| [solvice/scheduler-plugin](https://github.com/solvice/scheduler-plugin) | The **Claude Code plugin** that generated this dispatch dashboard |
+| [solvice/agent-plugin](https://github.com/solvice/agent-plugin) | Build scheduling **AI agents** — auto-assign, reoptimize, what-if, violations |
+
+---
+
 ## 🛠️ Tech Stack
 
 | Before (`v0`) | After (`v1`) |

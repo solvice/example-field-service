@@ -9,7 +9,6 @@ import { useDragAndDrop } from "./hooks/useDragAndDrop";
 import { useDistanceMatrix } from "./hooks/useDistanceMatrix";
 import { useSchedulerEvaluate } from "./hooks/useSchedulerEvaluate";
 import { DispatchMap } from "./DispatchMap";
-import { MapErrorBoundary } from "./MapErrorBoundary";
 import { DispatchTimeline } from "./DispatchTimeline";
 import { UnplannedQueue } from "./UnplannedQueue";
 import { DispatchKpiBar } from "./DispatchKpiBar";
@@ -162,9 +161,7 @@ function DispatchInner({
         <div className="flex-1 grid grid-cols-[2fr_3fr] gap-3 min-h-0">
           {/* Left: Map */}
           <div className="min-h-[300px]">
-            <MapErrorBoundary>
-              <DispatchMap />
-            </MapErrorBoundary>
+            <DispatchMap />
           </div>
 
           {/* Right: Timeline + Queue stacked */}

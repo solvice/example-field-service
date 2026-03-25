@@ -34,11 +34,15 @@ No scheduling. No maps. No optimization. Just tables.
 
 ![Technicians table — 5 techs with skills (HVAC, Electrical, Plumbing, Maintenance), home bases, and shifts](screenshots/03-technicians.png)
 
+---
+
 ### Step 2 — Install the Solvice scheduler plugin
 
 ```bash
 claude plugin add github:solvice/scheduler-plugin
 ```
+
+---
 
 ### Step 3 — Run `/scheduler`
 
@@ -60,7 +64,9 @@ The plugin starts an interactive conversation. It asks 6 questions:
 > → Map + Timeline + Unplanned queue + KPI dashboard
 >
 > **6. Map library preference?**
-> → MapLibre GL JS
+> → Leaflet (lightweight, works everywhere)
+
+---
 
 ### Step 4 — The plugin proposes an architecture
 
@@ -68,9 +74,9 @@ Before writing any code, the plugin presents a design:
 
 ```
 Domain Mapping:
-  Work Order  → Solvice Job
-  Technician  → Solvice Resource
-  Service Type → Solvice Tag
+  Work Order       → Solvice Job
+  Technician       → Solvice Resource
+  Service Type     → Solvice Tag
   Appointment Window → Solvice TimeWindow
 
 Components to generate:
@@ -84,17 +90,47 @@ Components to generate:
 
 You confirm, and it generates.
 
+---
+
 ### Step 5 — The dispatch dashboard appears
 
 The plugin generates all the code and a new **Dispatch** button appears in the nav:
 
-![Home page with the new Dispatch button in the navigation](screenshots/01-home.png)
+![Home page with the new orange Dispatch button in the navigation](screenshots/01-home.png)
 
-Click it, and you get a full dispatch planning dashboard:
+Click it, and the Solvice solver optimizes all 15 work orders across 5 technicians:
 
-![Dispatch dashboard — KPI bar, timeline with 5 technicians, unplanned queue with 15 work orders, map panel](screenshots/04-dispatch-full.png)
+![Full dispatch dashboard — map with routes, Gantt timeline, KPI metrics, all work orders assigned](screenshots/04-dispatch-full.png)
 
-**What the plugin generated:**
+---
+
+### What you see
+
+#### 🗺️ Map — Routes across Belgium
+
+Technician home bases (colored squares with initials), work order locations (colored dots), and optimized route polylines connecting each technician's assigned work orders.
+
+![Map close-up — CARTO light tiles, technician depots, work order markers, route polylines](screenshots/05-map-closeup.png)
+
+#### 📊 Timeline — Gantt-style schedule
+
+Each row is a technician. Colored blocks show assigned work orders positioned by arrival time, sized by service duration. Customer name, service type, and time visible on each block.
+
+![Timeline close-up — 5 technician rows with color-coded work order blocks](screenshots/06-timeline-closeup.png)
+
+#### 📈 KPI Bar — Real-time metrics
+
+Travel time, distance, and estimated cost — updated live as the solver optimizes.
+
+![KPI bar — 602 min travel time, 539.2 km distance, €1250 estimated cost](screenshots/08-kpi-bar.png)
+
+#### 📋 Unplanned Queue
+
+All 15 work orders assigned — queue shows 0 unplanned. If any work order couldn't be assigned (skill mismatch, capacity), it would appear here as a draggable card.
+
+---
+
+### What the plugin generated
 
 | Layer | Files | What it does |
 |:------|:------|:-------------|
@@ -168,7 +204,7 @@ The plugin asks about your use case, adapts to your terminology, and generates a
 
 | Before (`v0`) | After (`v1`) |
 |:--------------|:-------------|
-| Next.js 15 | + MapLibre GL JS |
+| Next.js 15 | + Leaflet (map) |
 | TypeScript | + @dnd-kit (drag-and-drop) |
 | Tailwind CSS v4 | + Solvice VRP API |
 | Lucide icons | + Distance matrix caching |

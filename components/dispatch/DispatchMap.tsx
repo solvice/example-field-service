@@ -21,12 +21,15 @@ export function techColor(index: number) {
 }
 
 function circleIcon(color: string, size: number, selected: boolean) {
-  const border = selected ? `3px solid white; box-shadow: 0 0 0 3px ${color}66, 0 1px 4px rgba(0,0,0,0.3)` : `2px solid rgba(255,255,255,0.8); box-shadow: 0 1px 4px rgba(0,0,0,0.3)`;
+  const s = selected ? size + 6 : size;
+  const border = selected
+    ? `3px solid white; box-shadow: 0 0 0 3px ${color}88, 0 2px 6px rgba(0,0,0,0.4)`
+    : `2px solid white; box-shadow: 0 2px 6px rgba(0,0,0,0.35)`;
   return L.divIcon({
     className: "",
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size / 2],
-    html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${color};border:${border};cursor:pointer;"></div>`,
+    iconSize: [s, s],
+    iconAnchor: [s / 2, s / 2],
+    html: `<div style="width:${s}px;height:${s}px;border-radius:50%;background:${color};border:${border};cursor:pointer;transition:all 150ms;"></div>`,
   });
 }
 
@@ -59,9 +62,10 @@ export function DispatchMap() {
       attributionControl: true,
     }).setView([50.85, 4.35], 8);
 
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "&copy; OpenStreetMap contributors",
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
       maxZoom: 19,
+      subdomains: "abcd",
     }).addTo(map);
 
     layerGroupRef.current = L.layerGroup().addTo(map);
@@ -118,7 +122,7 @@ export function DispatchMap() {
         color = techColor(idx);
       }
 
-      const size = isSelected ? 18 : 12;
+      const size = isSelected ? 20 : 16;
       const marker = L.marker([wo.latitude, wo.longitude], {
         icon: circleIcon(color, size, isSelected),
         title: `${wo.customerName} — ${wo.serviceType}`,
